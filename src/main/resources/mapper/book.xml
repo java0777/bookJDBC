@@ -7,7 +7,37 @@
         <result property="author" column="author"/>
         <result property="bookName" column="book_name"/>
     </resultMap>
+
+    <insert id="insertBook" statementType="PREPARED" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO book(book_name, author)
+        VALUES (#{bookName},#{author})
+    </insert>
+
+    <insert id="insertBookMenu">
+        INSERT INTO book_catalog(book_id, catalog_name, file_dir, file_name)
+        VALUES (#{book.id},#{catalogName},#{fileDir},#{fileName})
+    </insert>
+
+    <delete id="deleteBook">
+        DELETE FROM book WHERE id=#{id}
+    </delete>
+
     <select id="selectAll" resultMap="bookMap">
         SELECT * FROM book
+    </select>
+
+    <select id="selectBookByNameAndAuthor" resultMap="bookMap">
+        SELECT *,book_catalog.catalog_name,book_catalog.file_dir,book_catalog.file_name FROM book
+        JOIN book_catalog ON book.id=book_catalog.book_id
+        <trim prefix="where" prefixOverrides="and |or">
+            <if test="bookName!=null">
+                <bind name="bookName" value="'%'+bookName+'%'"/>
+                book.book_name LIKE #{bookName}
+            </if>
+            <if test="author!=null">
+                <bind name="author" value="'%'+author+'%'"/>
+                AND book.author LIKE #{author}
+            </if>
+        </trim>
     </select>
 </mapper>
