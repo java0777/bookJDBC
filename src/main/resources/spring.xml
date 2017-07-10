@@ -30,4 +30,12 @@
 
     <tx:annotation-driven transaction-manager="tx"/>
 
+    <!--17k抓取工具类-->
+    <bean id="k17CatchUtil" class="com.demo.k17.MobileUtil"/>
+    <!--17k章节抓取工具类-->
+    <bean id="k17TitleWorkUtil" class="com.demo.k17.BookCatchThread">
+        <constructor-arg>
+            <ref bean="k17CatchUtil"/>
+        </constructor-arg>
+    </bean>
 </beans>
