@@ -23,6 +23,7 @@ CREATE TABLE `book` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `book_name` varchar(255) DEFAULT NULL COMMENT '书籍名',
   `author` varchar(255) DEFAULT NULL COMMENT '书籍作者',
+  `info` varchar(255) DEFAULT NULL COMMENT '书籍介绍',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 

@@ -16,7 +16,7 @@ import java.util.UUID;
 /**
  * Created by Administrator on 2017/6/30.
  */
-@Service
+
 public class BookService implements IBookService {
     @Resource
     private IBookUtil util;

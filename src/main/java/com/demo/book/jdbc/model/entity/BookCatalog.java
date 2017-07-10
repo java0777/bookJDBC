@@ -9,8 +9,6 @@ public class BookCatalog {
     private String catalogName;//章节名
     private String fileDir;//相关内容文件文件夹地址
     private String fileName;//相关内容文件名
-
-
     public Integer getId() {
         return id;
     }
@@ -50,4 +48,6 @@ public class BookCatalog {
     public void setFileName(String fileName) {
         this.fileName = fileName;
     }
+
+
 }

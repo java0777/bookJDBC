@@ -9,6 +9,7 @@ public class Book {
     private Integer id; //主键
     private String bookName;//书籍名
     private String author;//作者名
+    private String info;//书籍介绍
     private List<BookCatalog> bookCatalogList;//相关目录清单
 
     public Integer getId() {
@@ -37,6 +38,14 @@ public class Book {
 
     public List<BookCatalog> getBookCatalogList() {
         return bookCatalogList;
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
     }
 
     public void setBookCatalogList(List<BookCatalog> bookCatalogList) {
