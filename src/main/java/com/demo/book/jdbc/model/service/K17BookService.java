@@ -65,7 +65,7 @@ public class K17BookService implements IBookService {
             String content = item.get("content").toString();
             String fileName = UUID.randomUUID().toString().replaceAll("-", "");
             BookCatalog catalog = new BookCatalog();
-            catalog.setBook(bookData);
+            catalog.setBookId(bookData.getId());
             catalog.setCatalogName(name);
             catalog.setFileDir(fileDir);
             catalog.setFileName(fileName);
@@ -75,6 +75,11 @@ public class K17BookService implements IBookService {
             catalogList.add(catalog);
         }
         return bookData;
+    }
+
+    @Override
+    public String getTitleContent(Integer bookId, Integer titleId) {
+        return null;
     }
 
 }

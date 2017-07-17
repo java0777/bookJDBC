@@ -30,4 +30,12 @@ public interface IBookService {
      * @return
      */
  Book catchBook(String bookName,String author) throws IOException;
+
+    /**
+     * 根据书籍编号，章节编号查询章节内容。
+     * @param bookId 书籍唯一编号
+     * @param titleId  章节唯一编号
+     * @return
+     */
+  String getTitleContent(Integer bookId,Integer titleId);
 }

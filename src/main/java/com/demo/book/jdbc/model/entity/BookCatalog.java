@@ -5,7 +5,7 @@ package com.demo.book.jdbc.model.entity;
  */
 public class BookCatalog {
     private Integer id; //目录主键
-    private Book book;//关联书籍
+    private Integer bookId;//关联书籍编号
     private String catalogName;//章节名
     private String fileDir;//相关内容文件文件夹地址
     private String fileName;//相关内容文件名
@@ -17,12 +17,13 @@ public class BookCatalog {
         this.id = id;
     }
 
-    public Book getBook() {
-        return book;
+
+    public Integer getBookId() {
+        return bookId;
     }
 
-    public void setBook(Book book) {
-        this.book = book;
+    public void setBookId(Integer bookId) {
+        this.bookId = bookId;
     }
 
     public String getCatalogName() {
