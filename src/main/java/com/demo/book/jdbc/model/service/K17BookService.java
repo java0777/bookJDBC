@@ -7,12 +7,14 @@ import com.demo.book.jdbc.model.entity.BookCatalog;
 import com.demo.port.IBookUtil;
 import com.demo.port.ICatchThread;
 import com.demo.util.BookWriterUtil;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -69,7 +71,13 @@ public class K17BookService implements IBookService {
             catalog.setFileDir(fileDir);
             catalog.setFileName(fileName);
             String fileStr = fileDir + fileName + ".txt";
-            BookWriterUtil.fileWriter(fileStr, content);
+            BufferedWriter writer = BookWriterUtil.getWriter(fileStr);
+            String[] split = content.split(" ");
+            for (String line : split) {
+                writer.newLine();
+                writer.write(line);
+            }
+            writer.close();
             catalogDao.insert(catalog);
             catalogList.add(catalog);
         }
@@ -82,8 +90,7 @@ public class K17BookService implements IBookService {
         String fileDir = catalog.getFileDir();
         String fileName = catalog.getFileName();
         StringBuilder content = new StringBuilder();
-        FileInputStream stream = new FileInputStream(fileDir + fileName + ".txt");
-        BufferedReader reader = new BufferedReader(new InputStreamReader(stream,"UTF-8"));
+        BufferedReader reader = BookWriterUtil.getReader(fileDir + fileName + ".txt");
         for (String line = reader.readLine(); line != null; line = reader.readLine()) {
             content.append(line);
         }
