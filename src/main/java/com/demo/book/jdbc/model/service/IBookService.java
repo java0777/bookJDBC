@@ -37,5 +37,5 @@ public interface IBookService {
      * @param titleId  章节唯一编号
      * @return
      */
-  String getTitleContent(Integer bookId,Integer titleId);
+  String getTitleContent(Integer bookId,Integer titleId) throws IOException;
 }

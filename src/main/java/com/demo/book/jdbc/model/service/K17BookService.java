@@ -12,8 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -78,8 +77,17 @@ public class K17BookService implements IBookService {
     }
 
     @Override
-    public String getTitleContent(Integer bookId, Integer titleId) {
-        return null;
+    public String getTitleContent(Integer bookId, Integer titleId) throws IOException {
+        BookCatalog catalog = catalogDao.getCatalogByBookIdAndTitleId(bookId, titleId);
+        String fileDir = catalog.getFileDir();
+        String fileName = catalog.getFileName();
+        StringBuilder content = new StringBuilder();
+        FileInputStream stream = new FileInputStream(fileDir + fileName + ".txt");
+        BufferedReader reader = new BufferedReader(new InputStreamReader(stream,"UTF-8"));
+        for (String line = reader.readLine(); line != null; line = reader.readLine()) {
+            content.append(line);
+        }
+        return content.toString();
     }
 
 }
