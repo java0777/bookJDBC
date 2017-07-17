@@ -1,3 +1,4 @@
+import com.demo.book.jdbc.model.config.ServiceConfig;
 import com.demo.book.jdbc.model.dao.BookDao;
 import com.demo.book.jdbc.model.entity.Book;
 import com.demo.book.jdbc.model.entity.BookCatalog;
@@ -15,7 +16,7 @@ import java.util.List;
  * Created by Administrator on 2017/7/17.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath*:spring.xml")
+@ContextConfiguration(value = "classpath*:spring.xml")
 @Transactional
 public class BaseTest {
     @Resource

@@ -8,6 +8,7 @@ import com.demo.book.jdbc.model.entity.BookCatalog;
 import com.demo.port.IBookUtil;
 import com.demo.port.ICatchThread;
 import com.demo.util.BookWriterUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -36,7 +37,7 @@ public class K17BookService implements IBookService {
     @Resource
     private BookCatalogDao catalogDao;
 
-    @Resource
+    @Autowired
     private ServiceConfig config;
     @Override
     public Book queryBook(String bookName, String author) {
