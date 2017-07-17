@@ -27,10 +27,6 @@ CREATE TABLE `book` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of book
--- ----------------------------
-INSERT INTO `book` VALUES ('1', '亵渎', '烟雨江南');
 
 -- ----------------------------
 -- Table structure for book_catalog

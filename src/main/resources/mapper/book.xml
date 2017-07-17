@@ -6,19 +6,15 @@
         <id property="id" column="id"/>
         <result property="author" column="author"/>
         <result property="bookName" column="book_name"/>
+        <collection property="bookCatalogList" column="id" select="com.demo.book.jdbc.model.dao.BookCatalogDao.selectByBookId"/>
     </resultMap>
 
-    <insert id="insertBook" statementType="PREPARED" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO book(book_name, author,info)
         VALUES (#{bookName},#{author},#{info})
     </insert>
 
-    <insert id="insertBookMenu">
-        INSERT INTO book_catalog(book_id, catalog_name, file_dir, file_name)
-        VALUES (#{book.id},#{catalogName},#{fileDir},#{fileName})
-    </insert>
-
-    <delete id="deleteBook">
+    <delete id="deleteById">
         DELETE FROM book WHERE id=#{id}
     </delete>
 
@@ -27,17 +23,20 @@
     </select>
 
     <select id="selectBookByNameAndAuthor" resultMap="bookMap">
-        SELECT *,book_catalog.catalog_name,book_catalog.file_dir,book_catalog.file_name FROM book
-        JOIN book_catalog ON book.id=book_catalog.book_id
-        <trim prefix="where" prefixOverrides="and |or">
+        SELECT * FROM book
+        <where>
             <if test="bookName!=null">
                 <bind name="bookName" value="'%'+bookName+'%'"/>
-                book.book_name LIKE #{bookName}
+               book_name LIKE #{bookName}
             </if>
             <if test="author!=null">
                 <bind name="author" value="'%'+author+'%'"/>
-                AND book.author LIKE #{author}
+                AND author LIKE #{author}
             </if>
-        </trim>
+        </where>
+    </select>
+
+    <select id="selectById" resultMap="bookMap">
+        SELECT * FROM book WHERE id=#{id}
     </select>
 </mapper>

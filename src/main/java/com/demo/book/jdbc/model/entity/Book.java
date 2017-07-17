@@ -51,4 +51,5 @@ public class Book {
     public void setBookCatalogList(List<BookCatalog> bookCatalogList) {
         this.bookCatalogList = bookCatalogList;
     }
+
 }

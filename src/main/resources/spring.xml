@@ -21,6 +21,7 @@
     <!-- 生成dao层对象-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="sqlSessionFactoryBeanName" value="factory"/>
+        <property name="annotationClass" value="org.springframework.stereotype.Repository"/>
         <property name="basePackage" value="com.demo.book.jdbc.model.dao"/>
     </bean>
 

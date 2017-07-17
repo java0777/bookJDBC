@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.demo.book.jdbc.model.dao.BookCatalogDao">
+    <resultMap id="catalogMap" type="com.demo.book.jdbc.model.entity.BookCatalog">
+        <id property="id" column="id"/>
+        <result property="catalogName" column="catalog_name"/>
+        <result property="fileDir" column="file_dir"/>
+        <result property="fileName" column="file_Name"/>
+        <association property="book" column="id" select="com.demo.book.jdbc.model.dao.BookDao.selectById"/>
+    </resultMap>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO book_catalog(book_id, catalog_name, file_dir, file_name)
+        VALUES (#{book.id},#{catalogName},#{fileDir},#{fileName})
+    </insert>
+
+    <select id="selectById" resultMap="catalogMap">
+        SELECT * FROM book_catalog WHERE id=#{id}
+    </select>
+    <select id="selectByBookId" resultMap="catalogMap">
+        SELECT * FROM book_catalog WHERE  book_id=#{id}
+    </select>
+</mapper>

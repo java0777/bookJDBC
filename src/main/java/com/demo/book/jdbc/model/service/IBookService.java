@@ -3,6 +3,8 @@ package com.demo.book.jdbc.model.service;
 
 import com.demo.book.jdbc.model.entity.Book;
 
+import java.io.IOException;
+
 /**
  * 书籍相关业务类
  */
@@ -27,5 +29,5 @@ public interface IBookService {
      * @param author  作者
      * @return
      */
- Book catchBook(String bookName,String author);
+ Book catchBook(String bookName,String author) throws IOException;
 }
