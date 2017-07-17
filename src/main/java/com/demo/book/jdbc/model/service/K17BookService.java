@@ -1,5 +1,6 @@
 package com.demo.book.jdbc.model.service;
 
+import com.demo.book.jdbc.model.config.ServiceConfig;
 import com.demo.book.jdbc.model.dao.BookCatalogDao;
 import com.demo.book.jdbc.model.dao.BookDao;
 import com.demo.book.jdbc.model.entity.Book;
@@ -35,6 +36,8 @@ public class K17BookService implements IBookService {
     @Resource
     private BookCatalogDao catalogDao;
 
+    @Resource
+    private ServiceConfig config;
     @Override
     public Book queryBook(String bookName, String author) {
         return bookDao.selectBookByNameAndAuthor(bookName, author);
@@ -56,7 +59,7 @@ public class K17BookService implements IBookService {
         List<BookCatalog> catalogList = new ArrayList<>();
         bookData.setBookCatalogList(catalogList);
         List<Map<String, Object>> bookTitles = bookUtil.getBookTitles(book, r);
-        String fileDir = "D:\\allTitle\\";
+        String fileDir = config.getBaseDir()+bookData.getId()+File.separator;
         File dir = new File(fileDir);
         if (!dir.exists()) {
             dir.mkdirs();
